@@ -1,0 +1,36 @@
+<form class="container"  (submit)="enviarFormulario()">
+    <div class="container-form">
+        <input required type="text" placeholder="Nombre" (change)="capturarNombre($event)" />
+        <input required type="text" placeholder="Apellido"  (change)="capturarApellido($event)" />
+        <label>Tipo Documento</label>
+        <select required (click)="capturarTipoDocumento($event)" >
+            <option value="1" >Cedula</option>
+            <option value="2" >Pasaporte</option>
+            <option value="3" >Nit</option>
+        </select>
+        <label>Fecha Nacimiento</label>
+        <input  required (change)="capturarFecha($event)"  type="date">
+        <label>Salario</label>
+        <input  required (change)="capturarSalario($event)" type="number">
+        <div>
+            <app-estado-civil></app-estado-civil>
+        </div>
+        <button  >Guardar</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Fecha Nacimiento</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let item of listaPersonas; let i = index" >
+                <th>{{item.id}}</th>
+                <th>{{item.nombre}}</th>
+                <th>{{item.apellidos}}</th>
+                <th>{{item.fechaNacimiento}}</th>
+            </tbody>
+        </table>
+    </div>
+</form>
