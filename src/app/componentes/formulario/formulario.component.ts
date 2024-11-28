@@ -50,9 +50,11 @@ export class FormularioComponent implements OnInit {
 
     this.dataPersonService.guardarInformacionDataPersona(data).subscribe({
       next: (data) => {
+        this.consultarTodasPersonas();
         alert('Informacion correctamente grabada');
       },
       error: (error) => {
+        this.consultarTodasPersonas();
         alert('Error al momento de grabar la información');
       },
     });

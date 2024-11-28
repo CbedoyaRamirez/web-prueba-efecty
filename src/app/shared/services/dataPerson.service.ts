@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { DataPersona } from "../interfaces/IDataPersona";
+import { Observable } from "rxjs";
 
 
 @Injectable({
@@ -18,7 +19,7 @@ export class DataPersonService {
         return this.httpServer.post<DataPersona>(`http://localhost:5034/api/DataPersona`, data)
     }
 
-    consultarDataPersonas() {
+    consultarDataPersonas(): Observable<DataPersona[]> {
         return this.httpServer.get<DataPersona[]>("http://localhost:5034/api/DataPersona")
     }
 
