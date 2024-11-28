@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataPersona } from 'src/app/shared/interfaces/IDataPersona';
 import { DataPersonService } from 'src/app/shared/services/dataPerson.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-formulario',
@@ -50,35 +51,82 @@ export class FormularioComponent implements OnInit {
 
     this.dataPersonService.guardarInformacionDataPersona(data).subscribe({
       next: (data) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Data grabada exitosamente",
+          showConfirmButton: false,
+          timer: 1500
+        });
         this.consultarTodasPersonas();
-        alert('Informacion correctamente grabada');
       },
       error: (error) => {
         this.consultarTodasPersonas();
-        alert('Error al momento de grabar la información');
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Error al momento de grabar",
+          showConfirmButton: false,
+          timer: 1500
+        });
       },
     });
   }
 
   validarInformacion() : boolean {
     if(this.nombre.trim() === '') {
-      alert('Favor introducir nombre')
+      Swal.fire({
+        position: "top-end",
+        icon: "warning",
+        title: "Favor introducir nombre",
+        showConfirmButton: false,
+        timer: 1500
+      });      
       return false;
     }
     if(this.apellidos.trim() === '') {
-      alert('Favor introducir apellido')
+      Swal.fire({
+        position: "top-end",
+        icon: "warning",
+        title: "Favor introducir apellido",
+        showConfirmButton: false,
+        timer: 1500
+      });      
+
       return false;
     }
     if(this.fechaNacimiento.trim() === '') {
-      alert('Favor introducir fecha nacimiento')
+      Swal.fire({
+        position: "top-end",
+        icon: "warning",
+        title: "Favor introducir fecha nacimiento",
+        showConfirmButton: false,
+        timer: 1500
+      });      
+
       return false;
     }
     if(this.tipoDocumento=== 0) {
-      alert('Favor introducir tipo documento')
+      Swal.fire({
+        position: "top-end",
+        icon: "warning",
+        title: "Favor introducir tipo documento",
+        showConfirmButton: false,
+        timer: 1500
+      });      
+
       return false;
     }
     if(this.ValorGana === 0) {
       alert('Favor introducir el valor que gana')
+      Swal.fire({
+        position: "top-end",
+        icon: "warning",
+        title: "Favor introducir nombre",
+        showConfirmButton: false,
+        timer: 1500
+      });      
+
       return false;
     }
     return true;
